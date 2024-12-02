@@ -69,24 +69,24 @@ impl Camera {
 	    let viewport_height: f64 = 2.0 * h * focus_dist;
 	    let viewport_width: f64 = viewport_height * ((image_width as f64)/image_height as f64);
 
-	    // Calculate the u,v,w unit basis vectors for the camera coordinate fram.e
+	    // Calculate the u,v,w unit basis vectors for the camera coordinate frame.
 	    let w: Vec3 = vec3::unit_vector(lookfrom - lookat);
 	    let u: Vec3 = vec3::unit_vector(vec3::cross(vup, w));
 	    let v: Vec3 = vec3::cross(w, u);
 
-	    // Calculate the vectorz across the horizontal and down the vertical viewport edges.
+	    // Calculate the vectors across the horizontal and down the vertical viewport edges.
 	    let viewport_u: Vec3 = viewport_width * u; // Vector across viewport horizontal edge
 	    let viewport_v: Vec3 = viewport_height * -v; // Vector down viewport vertical edge
 
-	    // Calculate the horizontal and vertical delta vectors from pixel to pixel
+	    // Calculate the horizontal and vertical delta vectors from pixel to pixel.
 	    let pixel_delta_u: Vec3 = viewport_u / image_width as f64;
 	    let pixel_delta_v: Vec3 = viewport_v / image_height as f64;
 
-	    // Calculate the location of the upper left pixel
+	    // Calculate the location of the upper left pixel.
 	    let viewport_upper_left: Vec3 = center - (focus_dist * w) - viewport_u/2.0 - viewport_v/2.0;
 	    let pixel00_loc: Point3 = viewport_upper_left + 0.5 * (pixel_delta_u + pixel_delta_v);
 
-	    // Calculate the camera defocus disk basis vectors
+	    // Calculate the camera defocus disk basis vectors.
 	    let defocus_radius: f64 = focus_dist * f64::tan(common::degrees_to_radians(defocus_angle / 2.0));
 	    let defocus_disk_u: Vec3 = u * defocus_radius;
 	    let defocus_disk_v: Vec3 = v * defocus_radius;
@@ -161,8 +161,13 @@ impl Camera {
         Vec3::new(common::random_double() - 0.5, common::random_double() - 0.5, 0.0)
 	}
 
+	fn sample_disk(&self, radius: f64) -> Vec3 { 
+		// Returns a random point in the unit (radius 0.5) disk centered at the origin.
+        radius * vec3::random_in_unit_disk()
+	}
+
 	fn defocus_disk_sample(&self) -> Point3 {
-		// Returns a random opint in the camera defocus disk
+		// Returns a random point in the camera defocus disk.
 		let p: Vec3 = vec3::random_in_unit_disk();
 		self.center + (p.x() * self.defocus_disk_u) + (p.y() * self.defocus_disk_v)
 	}
