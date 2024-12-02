@@ -1,4 +1,4 @@
-# YARBIR (Yet Another Raytracer Built In Rust)
+# Yet Another Raytracer Built In Rust
 ![](https://raytracing.github.io/images/img-1.23-book1-final.jpg)
 
 ## Features
