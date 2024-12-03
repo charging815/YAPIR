@@ -6,7 +6,10 @@ pub struct Interval {
 
 impl Interval {
 	pub fn new(min: f64, max: f64) -> Interval {
-		Interval { min, max }
+		Interval { 
+			min,
+			max,
+		}
 	}
 	pub fn size(&self) -> f64 {
 		self.max - self.min
