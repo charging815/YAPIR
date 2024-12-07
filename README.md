@@ -1,4 +1,4 @@
-# Yet Another Pathtracer Built In Rust
+# Yet Another Pathtracer In Rust
 ![](https://raytracing.github.io/images/img-1.23-book1-final.jpg)
 
 ## Features
