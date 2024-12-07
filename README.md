@@ -14,6 +14,7 @@
 
 ## Roadmap
 - [ ] Motion blur
+- [ ] Axis Aligned Bounding Boxes
 - [ ] Bounding Volume Hierarchies
 - [ ] Texture Mapping
 - [ ] Perlin Noise
